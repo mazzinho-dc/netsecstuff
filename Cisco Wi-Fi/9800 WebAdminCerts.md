@@ -70,6 +70,7 @@ Connect WEB-ADMIN24 trustpoint to HTTP Access
 and restart http service
 ```cisco
 ip http secure-trustpoint WEB-ADMIN24
-no ip http server ip http server
+no ip http server
+ip http server
 ```
 
