@@ -1,6 +1,8 @@
 # EWC Initial Config
 ### Step 1 - Configure the Host Name (Optional)
 ==========================================
+```Cisco
+
 WLC7069.5A74.7C78#conf t
 WLC7069.5A74.7C78 (config)#hostname <#host-name>
 <#host-name>(config)#end
@@ -9,9 +11,10 @@ For example:
 WLC7069.5A74.7C78#conf t
 WLC7069.5A74.7C78(config)#hostname C9800-AP
 C9800-AP(config)#end
-
+```
 ### Step 2A - Set the administrative username/password
 ==================================================
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)# username <#username> privilege 15 password <#password>
 C9800-AP(config)#end
@@ -20,12 +23,12 @@ For example:
 C9800-AP#conf t
 C9800-AP(config)# username admin privilege 15 password Network123
 C9800-AP(config)#end
-
+```
 ### Step 2B - Configure the AP Profile
 ==================================
 To configure the AP management username/password for AP profile,
 Please use the SAME username/password configured in step 2A.
-
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)#ap profile default-ap-profile
 C9800-AP(config-ap-profile)#mgmtuser username <#username> password 0 <#password> secret 0 <#password>
@@ -36,9 +39,10 @@ C9800-AP#conf t
 C9800-AP(config)#ap profile default-ap-profile
 C9800-AP(config-ap-profile)#mgmtuser username admin password 0 Network123 secret 0 Network123
 C9800-AP(config-ap-profile)#end
-
+```
 ### Step 3A - Configure the Wireless Local Area Network
 ===================================================
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)#wlan <#wlan-profile-name> <#wlan-id> <#ssid-network-name>
 C9800-AP(config-wlan)# no security wpa akm dot1x
@@ -55,12 +59,12 @@ C9800-AP(config-wlan)# security wpa psk set-key ascii 0 Cisco123
 C9800-AP(config-wlan)# security wpa akm psk
 C9800-AP(config-wlan)# no shutdown
 C9800-AP(config-wlan)#end
-
+```
 ### Step 3B - Configure the Wireless Profile Policy
 ===============================================
 The wireless profile policy name must be SAME as the <#wlan-profile-name>
 configured in step 3A.
-
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)#wireless profile policy <#wlan-profile-name>
 C9800-AP(config-wireless-policy)#no central association
@@ -81,12 +85,12 @@ C9800-AP(config-wireless-policy)#http-tlv-caching
 C9800-AP(config-wireless-policy)#session-timeout 86400
 C9800-AP(config-wireless-policy)#no shutdown
 C9800-AP(config-wireless-policy)#end
-
+```
 ### Step 3C - Configure the Default Policy Tag
 ==========================================
 To map the WLAN to the Profile Policy, use the SAME <#wlan-profile-name>
 configured in step 3A.
-
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)#wireless tag policy default-policy-tag
 C9800-AP(config-policy-tag)#wlan <#wlan-profile-name> policy <#wlan-profile-name>
@@ -98,7 +102,7 @@ C9800-AP#conf t
 C9800-AP(config)#wireless tag policy default-policy-tag
 C9800-AP(config-policy-tag)#wlan employee policy employee
 C9800-AP(config-policy-tag)#end
-
+```
 ### Step 4 - Turn on the global encryption
 ======================================
 This config is highly recommended for the security.
@@ -108,7 +112,7 @@ With this configuration, all the credentials are saved as encrypted strings.
 
 User needs to input a "key" for password here, It's recommended to use the SAME
 administrative password configured in step 2A as the key for password encryption.
-
+```Cisco
 C9800-AP#conf t
 C9800-AP(config)#service password-encryption
 C9800-AP(config)#password encryption aes
@@ -121,7 +125,7 @@ C9800-AP(config)#service password-encryption
 C9800-AP(config)#password encryption aes
 C9800-AP(config)#key config-key newpass Network123
 C9800-AP(config)#end
-
+```
 ### Step 5 - Save the Configuration
 ================================
 
@@ -146,9 +150,9 @@ Network created in step 3A and please use the admin username/password
 configured in step 2A
 
 NOW execute the below command to complete the device provisioning:
-
+```Cisco
 C9800-AP# write memory
-
+```
 
 ##############################################################################
 
