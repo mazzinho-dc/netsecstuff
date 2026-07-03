@@ -1,1 +1,3 @@
-# These are configuration files and skripts i use on my personal systems
+# Mazzes dotfiles
+
+These are configuration files and skripts i use on my personal systems
